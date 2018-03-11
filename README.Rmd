@@ -18,11 +18,11 @@ set.seed(123)
 ```
 
 
-Try to answer this question (https://www.facebook.com/groups/dataninja/permalink/1790684897903927/)
+Try to answer this question https://www.facebook.com/groups/dataninja/permalink/1790684897903927/
 
 ## Obtaining and using access tokens
 
-see (https://cran.r-project.org/web/packages/rtweet/vignettes/auth.html)
+see https://cran.r-project.org/web/packages/rtweet/vignettes/auth.html
 
 ```{r get_token, eval = FALSE, echo = TRUE}
 
