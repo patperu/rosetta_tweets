@@ -1,0 +1,82 @@
+---
+title: "Collecting Tweets from @ESA_Rosetta and @Philae2014"
+author: "Patrick Hausmann"
+date: "11.03.2018"
+output: github_document
+---
+
+```{r}
+
+library(rtweet)
+library(dplyr)
+library(readr)
+
+```
+
+```{r echo = FALSE}
+set.seed(123)
+```
+
+
+Try to answer this question (https://www.facebook.com/groups/dataninja/permalink/1790684897903927/)
+
+## Obtaining and using access tokens
+
+see (https://cran.r-project.org/web/packages/rtweet/vignettes/auth.html)
+
+```{r get_token, eval = FALSE, echo = TRUE}
+
+## whatever name you assigned to your created app
+appname <- "esa_rosetta"
+
+## api key (example below is not a real key)
+key <- "uwaW......"
+
+## api secret (example below is not a real key)
+secret <- "1XQjryO7....."
+
+## create token named "twitter_token"
+twitter_token <- create_token(
+  app = appname,
+  consumer_key = key,
+  consumer_secret = secret)
+
+saveRDS(twitter_token, file = "twitter_token.rds")
+
+```
+
+## Use stored twitter token to authorize
+
+```{r load_token}
+
+twitter_token <- readRDS("twitter_token.rds")
+
+```
+
+## Collecting and saving tweets
+
+```{r get_tweets}
+
+tmls <- get_timelines(c("ESA_Rosetta", "Philae2014"), n = 3200)
+glimpse(tmls)
+
+saveRDS(tmls, file = "rosetta.rds")
+
+```
+
+## Export selected columns as CSV
+
+```{r export_csv}
+
+tmls1 <- tmls %>% 
+         select(status_id:retweet_count)
+
+tmls1 %>% 
+      sample_n(3) %>% 
+      select(created_at, screen_name, text, favorite_count, retweet_count) %>%
+      knitr::kable()
+
+readr::write_csv(tmls1, path="rosetta.csv")
+
+```
+
