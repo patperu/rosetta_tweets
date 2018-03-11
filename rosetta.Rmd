@@ -76,7 +76,7 @@ tmls1 %>%
       select(created_at, screen_name, text, favorite_count, retweet_count) %>%
       knitr::kable()
 
-readr::write_csv(tmls1, path="rosetta.csv")
+readr::write_excel_csv2(tmls1, path="rosetta.csv")
 
 ```
 

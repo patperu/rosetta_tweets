@@ -133,5 +133,5 @@ tmls1 %>%
 | 2014-02-28 16:23:31 | ESA\_Rosetta | I hope you enjoyed the images! Feel free to browse through 100s of others via my dedicated website: <http://t.co/Wk0WDPIBsO>                       |               30|              17|
 
 ``` r
-readr::write_csv(tmls1, path="rosetta.csv")
+readr::write_excel_csv2(tmls1, path="rosetta.csv")
 ```
